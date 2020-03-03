@@ -23,7 +23,7 @@ public class DownQueue {
     private Lock lock = new ReentrantLock();
     //任务集合
     private List<DownloadThread> threads = new ArrayList<>();
-    //任务状态的数据
+    //任务状态的清单数据
     List<String> data = new ArrayList<>();
     public static int threadFinishedCount = 0;//已完成任务的数量
     private int count = 0;                //已添加多少个任务
@@ -31,6 +31,13 @@ public class DownQueue {
     public DownQueue() {
         if (!EventBus.getDefault().isRegistered(this))
             EventBus.getDefault().register(this);
+    }
+
+    public void add(DownloadThread thread) {
+        lock.lock();
+        count++;
+        threads.add(thread);
+        lock.unlock();
     }
 
     public void start() {
@@ -54,16 +61,10 @@ public class DownQueue {
         data.clear();
     }
 
-    public int getSize() {
+    public int count() {
         return threads.size();
     }
 
-    public void add(DownloadThread thread) {
-        lock.lock();
-        count++;
-        threads.add(thread);
-        lock.unlock();
-    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(QueueEventMsg msg) {
@@ -76,7 +77,7 @@ public class DownQueue {
                 for (String s : data) {
                     text.append(s + "\n");
                 }
-                EventBus.getDefault().post(new DownloadEventMsg(THREAD_FINISHED, msg.getMsg(),text));
+                EventBus.getDefault().post(new DownloadEventMsg(THREAD_FINISHED, msg.getMsg(), text));
                 //---------------------------
                 threadFinishedCount++;
                 //开始下一个任务
