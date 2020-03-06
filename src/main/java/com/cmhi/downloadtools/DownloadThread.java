@@ -1,5 +1,7 @@
 package com.cmhi.downloadtools;
 
+import android.os.FileUtils;
+
 import com.cmhi.downloadtools.bean.DownloadEventMsg;
 import com.cmhi.downloadtools.bean.QueueEventMsg;
 
@@ -69,7 +71,7 @@ public class DownloadThread extends Thread {
             byte[] buffer = new byte[8096];        //下载的缓冲池为8KB
 
             bis = new BufferedInputStream(conn.getInputStream());
-            bos = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+            bos = new BufferedOutputStream(new FileOutputStream(new File(filePath+".debris")));
 
             long downloadLength = 0;//当前已下载的文件大小
             int bufferLength = 0;
@@ -83,6 +85,7 @@ public class DownloadThread extends Thread {
                 EventBus.getDefault().post(new DownloadEventMsg(THREAD_PROGRESS, percent, fileName));
             }
             //发送下载完毕的消息
+            new File(filePath+".debris").renameTo(new File(filePath));
             EventBus.getDefault().post(new QueueEventMsg(THREAD_FINISHED, fileName));
         } catch (Exception e) {
             e.printStackTrace();
