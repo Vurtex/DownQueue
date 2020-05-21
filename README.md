@@ -51,7 +51,6 @@
     //方法内
     try {
         downQueue.add(new DownloadThread(new URL(_url),getFilesDir().getAbsolutePath() + 									File.separator +ruantanzhen_apkName + ".apk"));
-        }
     }catch(Exception ignored){
     }finally{
         downQueue.start();
