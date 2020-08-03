@@ -45,6 +45,13 @@ public class DownloadEventMsg {
         this.obj = obj;
     }
 
+    public DownloadEventMsg(int type, String msg,Object obj,int arg2) {
+        this.type = type;
+        this.msg = msg;
+        this.obj = obj;
+        this.arg2 = arg2;
+    }
+
     public DownloadEventMsg(int type, int arg1) {
         this.type = type;
         this.arg1 = arg1;
@@ -67,5 +74,13 @@ public class DownloadEventMsg {
 
     public void setArg1(int arg1) {
         this.arg1 = arg1;
+    }
+
+    public int getArg2() {
+        return arg2;
+    }
+
+    public void setArg2(int arg2) {
+        this.arg2 = arg2;
     }
 }

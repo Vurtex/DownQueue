@@ -9,29 +9,25 @@ import com.cmhi.downloadtools.bean.DownloadEventMsg;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import static com.cmhi.downloadtools.DownloadThread.QUEUE_FINISHED;
 import static com.cmhi.downloadtools.DownloadThread.THREAD_FINISHED;
 import static com.cmhi.downloadtools.DownloadThread.THREAD_PROGRESS;
 
-public class MainActivity extends AppCompatActivity {
+public class DemoActivity extends AppCompatActivity {
     DownQueue downQueue = new DownQueue();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        try {
-            downQueue.add(new DownloadThread(
-                    new URL("http://120.27.237.139:8089/apk/upgrade/mobile/beijing/ruantanzhen/ruantanzhen.apk"), getFilesDir().getAbsolutePath() + File.separator +
-                    "ruantanzhen" + ".apk"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        downQueue.start();
+//        try {
+//            downQueue.add(new DownloadThread2(
+//                    new URL("http://120.27.237.139:8089/apk/upgrade/mobile/beijing/ruantanzhen/ruantanzhen.apk"), getFilesDir().getAbsolutePath() + File.separator +
+//                    "ruantanzhen" + ".apk"));
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+//        downQueue.start();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
