@@ -25,13 +25,19 @@
 
 ## 方法：
 
-|                 Method                  |        Parameter         |               Description               |
-| :-------------------------------------: | :----------------------: | :-------------------------------------: |
-|               构造方法()                |            -             |          初始化EventBus等组件           |
-| public void  add(DownloadThread thread) | 自定义的线程类，继Thread | 因为是单线程任务队列,设计上弃用线程池。 |
-|           public void start()           |            -             |      开始顺序执行队列中的下载任务       |
-|          public void destroy()          |            -             |   关闭队列，清楚缓存在onDestroy中使用   |
-|           public int count()            |            -             |             获取当前任务数              |
+|                 Method                          |        Parameter         |               Description               |
+| :-------------------------------------:         | :----------------------: | :-------------------------------------: |
+|               构造方法()                         |            -             |          初始化EventBus等组件             |
+|   void add(DownloadThread thread)               | 自定义的线程类，继Thread    |   因为是单线程任务队列,设计上弃用线程池。          |
+|   void start()                                  |            -             |   开始顺序执行队列中的下载任务           |
+|   int count()                                   |            -             |   已添加任务的数量              |
+|   int getThreadFinishedCount()                  |            -             |   已完成任务的数量              |
+|   int findIndexByName(String taskName)          |            -             |   根据任务名返回任务的下标      |
+|   DownloadThread findTaskByName(String taskName)|            -             |   根据任务名返回任务       |
+|   int getCurrentIndex()                         |            -             |   返回当前任务的下标       |
+|   DownloadThread getCurrentTask()               |            -             |   返回当前任务       |
+|   DownloadThread removeCurrentTask()            |            -             |   从队列移出当前任务，参照List.remove()       |
+|   void destroy()                                |            -             |   关闭队列，清楚缓存在onDestroy中使用       |
 
 ## 使用方法：
 
