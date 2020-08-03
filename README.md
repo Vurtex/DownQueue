@@ -58,8 +58,7 @@
 
     //方法内
     try {
-        downQueue.add(new DownloadThread(new URL(_url),getFilesDir().getAbsolutePath() + 									File.separator +ruantanzhen_apkName + ".apk"));
-        }
+        downQueue.add(new DownloadThread(new URL(_url),getFilesDir().getAbsolutePath() + File.separator + apkName + ".apk"));
     }catch(Exception ignored){
     }finally{
         downQueue.start();
@@ -82,7 +81,7 @@
             //TODO 安装动作
           	
         } else if (msg.getType() == QUEUE_FINISHED) {
-            //TODO 下载完所有的第三方apk 拉起牌照方
+            //TODO 下载完队列所有的第三方apk 
             
         }
     }
