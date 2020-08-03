@@ -28,7 +28,7 @@
 |                 Method                          |        Parameter         |               Description               |
 | :-------------------------------------:         | :----------------------: | :-------------------------------------: |
 |               构造方法()                         |            -             |          初始化EventBus等组件             |
-|   void add(DownloadThread thread)               | 自定义的线程类，继Thread    |   因为是单线程任务队列,设计上弃用线程池。          |
+|   void add(DownloadThread thread)               | 自定义任务类，实现Runnable类|   因为是单线程任务队列，内部是线程池启动          |
 |   void start()                                  |            -             |   开始顺序执行队列中的下载任务           |
 |   int count()                                   |            -             |   已添加任务的数量              |
 |   int getThreadFinishedCount()                  |            -             |   已完成任务的数量              |
