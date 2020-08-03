@@ -68,7 +68,7 @@
 三、回调代码
 
 ```java
- 		@Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(DownloadEventMsg msg) {
         String appName = msg.getMsg();
         if (msg.getType() == THREAD_PROGRESS) {
@@ -89,7 +89,7 @@
 四、清空（防内存泄漏）
 
 ```java
- 		@Override
+    @Override
     protected void onDestroy() {
       super.onDestroy();
       downQueue.destroy();
